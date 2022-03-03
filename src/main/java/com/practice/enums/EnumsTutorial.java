@@ -29,6 +29,7 @@ public class EnumsTutorial {
 			System.out.println(day.toString()); // print as String
 			System.out.println(day.ordinal()); // print as associated indexes
 		}
+		
 	}
 }
 
