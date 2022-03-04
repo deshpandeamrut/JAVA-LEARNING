@@ -10,7 +10,7 @@ There are two ways to create a thread:
 - Runnable instance helps in reusing the thread
 - Java only supports single inheritance, so you can only extend one class.
 - 
-
+![alt text](https://github.com/deshpandeamrut/JAVA-LEARNING/blob/main/src/main/resources/Java_-_Wait_and_Notify.webp) 
 
 ## Dameon vs User Threads
 Daemon threads are low priority threads which always run in background and user threads are high priority threads which always run in foreground. User Thread or Non-Daemon are designed to do specific or complex task where as daemon threads are used to perform supporting tasks.
