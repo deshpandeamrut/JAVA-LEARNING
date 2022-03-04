@@ -1,21 +1,49 @@
 # JAVA Threads
+
+## Process vs Thread
+
+### Process 
+- Is heavy, & resource rich. 
+- Each process has its own address space.
+- Context switching is difficult and inter process communication is costly
+
+### Thread
+- Thread is a light weight process
+- Multiple threads can share the same address space
+- Hence the context switching is also easy
+- Inter-thread communication is also easy
+
+
+###Concurrency vs Parallelism
+Concurrency means multiple tasks which start, run, and complete in overlapping time periods, in no specific order. Parallelism is when multiple tasks OR several part of a unique task literally run at the same time, e.g. on a multi-core processor.
+
+**Deadlock** - It is a situation in which two or more threads are indefinitely waiting(blocked) to acquire each other’s resources
+
+**Livelock** - In the case of a livelock, the states of the processes involved in a live lock scenario constantly change. On the other hand, the processes still depend on each other and can never finish their tasks.
+
+**Starvation** is an outcome of a process that is unable to gain regular access to the shared resources it requires to complete a task and thus, unable to make any progress.
+
 There are two ways to create a thread:
 
- - extends Thread class
- - implement Runnable interface
+ - Extending Thread class
+ - Implementing Runnable interface
+
 ##### Difference in both the approaches
 
 - Creating by implementing runnable is preferred way
 - Instantiating an interface gives a cleaner separation between your code and the implementation of threads.
 - Runnable instance helps in reusing the thread
 - Java only supports single inheritance, so you can only extend one class.
-- 
+
 ![alt text](https://github.com/deshpandeamrut/JAVA-LEARNING/blob/main/src/main/resources/Java_-_Wait_and_Notify.webp) 
 
 ## Dameon vs User Threads
 Daemon threads are low priority threads which always run in background and user threads are high priority threads which always run in foreground. User Thread or Non-Daemon are designed to do specific or complex task where as daemon threads are used to perform supporting tasks.
  - JVM will not force the user threads to terminate. It will wait for user threads to terminate themselves. On the other hand, JVM will force the daemon threads to terminate if all the user threads have finished their task.
  - Daemon threads can be created by setting setDaemon flag to true on Thread object
+ - Thread created by the user ex: main program
+ - JVM waits till user thread is terminated properly
+ - User thread can be made to Daemon by setting setDaemon() as true
 
 ## Thread Priority
 Every thread in Java has a priority that helps the thread scheduler to determine the order in which threads scheduled. The threads with higher priority will usually run before and more frequently than lower priority threads. By default, all the threads had the same priority, i.e., they regarded as being equally distinguished by the scheduler, when a thread created it inherits its priority from the thread that created it.
@@ -137,4 +165,79 @@ class Counter {
     }
 }
 ``
+
+#### sleep()
+- Available in java.lang.Thread
+- Tells the current thread to sleep for certain time period
+- Accepts in milliseconds
+- Throws exceptions
+- No guarantee
+- Once sleep is complete , thread may be in runnable or running state
+- Does not release resources
+
+#### Yield() (static method Thread.yield())
+- Tells the current thread to give chance to the thread with equal priority in the thread pool
+- Yield can only make a thread to go to runnable state and its not guaranteed
+
+#### join()
+- Not static has to be called with thread objects
+- It tells the current running thread to wait until the task of join calling thread is over
+- I.e if t1 is running and t2.join() is called in between, t1 has to wait until t2 completes
+- It is guaranteed that the thread will wait 
+
+#### Deprecated Methods()
+- stop()
+- suspend()
+- destroy()
+- resume()
+
+#### Instead use 
+- Sleep
+- Interrupt:used to interrupt if thread is sleeping
+
+
+### wait()
+- calling wait() forces the current thread to wait until some other thread invokes notify() or notifyAll() on the same object.
+- It also release the resources the thread is currently having
+- when we've executed synchronized instance method for the given object
+- when we've executed the body of a synchronized block on the given object
+	by executing synchronized static methods for objects of type Class
+
+### notify()
+For all threads waiting on this object's monitor (by using any one of the wait() methods), the method notify() notifies any one of them to wake up arbitrarily. 
+
+### notifyAll()
+This method simply wakes all threads that are waiting on this object's monitor.
+
+The awakened threads will complete in the usual manner, like any other thread.
+
+
+### Java Concurrent APIs
+1. ExecutorService
+ExecutorService interface is basically a sub-interface of Executor interface with some additional methods or features that help in managing and controlling the execution of threads. It enables us to execute tasks asynchronously on threads.
+
+2. ReentrantLock
+ReentrantLock provides the same visibility and orderings guaranteed as implicit lock, acquired by synchronized keyword in Java, it provides more functionality and differs in certain aspects. As stated earlier,  the main difference between synchronized and ReentrantLock is the ability to try to lock interruptibly, and with timeout. Thread doesn’t need to block infinitely, which was the case with synchronized. 
+
+    1. Ability to lock interruptibly.
+    2. Ability to timeout while waiting for lock.
+    3. Power to create a fair lock.
+    4. API to get a list of waiting threads for lock.
+    5. Flexibility to try to lock without blocking.
+
+3. CountdownLatch
+CountDownLatch is used to make sure that a task waits for other threads before it starts. To understand its application, let us consider a server where the main task can only start when all the required services have started.
+Working of CountDownLatch:
+When we create an object of CountDownLatch, we specify the number of threads it should wait for, all such thread are required to do count down by calling CountDownLatch.countDown() once they are completed or ready to the job. As soon as count reaches zero, the waiting task starts running.
+https://www.geeksforgeeks.org/countdownlatch-in-java/
+
+4. Cyclic Barrier 
+	Same as countdownlatch except here, we can reset the latch to make wait again
+
+
+#### HashTable vs Concurrent HashMap
+Both are thread safe map implementations
+Hashtable locks the entire map where as concurrentHashMap locks only certain areas of map so that others are free to access
+Concurrenthashmap is hence more performant
+
 
