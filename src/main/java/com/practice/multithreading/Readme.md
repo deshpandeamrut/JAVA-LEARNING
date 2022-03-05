@@ -262,6 +262,9 @@ In order to have consistent data synchronization the following conditions have t
 2. The consumer should not try to consume when the buffer is empty
 3. The buffer/queue/list should be accesses either by producer or consumer at a time
 
-
+#### Solution
+1. Thread Synchronization
+ - Using wait notify
+ - Using thread safe blocking queue implementations
 
 
