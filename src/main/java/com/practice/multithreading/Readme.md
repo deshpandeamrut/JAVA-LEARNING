@@ -211,10 +211,26 @@ This method simply wakes all threads that are waiting on this object's monitor.
 
 The awakened threads will complete in the usual manner, like any other thread.
 
+#### Fake Wakeups or Spurious Wakeups
+A thread can also wake up without being notified, interrupted, or
+>> timing out, a so-called <i>spurious wakeup</i>.  While this will rarely
+>> occur in practice, applications must guard against it by testing for
+>> the condition that should have caused the thread to be awakened and
+>> continuing to wait if the condition is not satisfied.  In other words,
+>> waits should always occur in loops, like this one: 
+>>     synchronized (obj) {
+>>         while (condition does not hold)
+>>            obj.wait(timeout);
+>>         ... // Perform action appropriate to condition
+>>     }
+
+### Lock Fairness
+We'll briefly touch on the topic of fairness in locks since its out of scope for this course. When locks get acquired by threads, there's no guarantee of the order in which threads are granted access to a lock. A thread requesting lock access more frequently may be able to acquire the lock unfairly greater number of times than other locks. Java locks can be turned into fair locks by passing in the fair constructor parameter. However, fair locks exhibit lower throughput and are slower compared to their unfair counterparts.
 
 ### Java Concurrent APIs
 1. ExecutorService
 ExecutorService interface is basically a sub-interface of Executor interface with some additional methods or features that help in managing and controlling the execution of threads. It enables us to execute tasks asynchronously on threads.
+Java offers thread pools via its Executor Framework. The framework includes classes such as the ThreadPoolExecutor for creating thread pools
 
 2. ReentrantLock
 ReentrantLock provides the same visibility and orderings guaranteed as implicit lock, acquired by synchronized keyword in Java, it provides more functionality and differs in certain aspects. As stated earlier,  the main difference between synchronized and ReentrantLock is the ability to try to lock interruptibly, and with timeout. Thread doesn’t need to block infinitely, which was the case with synchronized. 
@@ -239,5 +255,13 @@ https://www.geeksforgeeks.org/countdownlatch-in-java/
 Both are thread safe map implementations
 Hashtable locks the entire map where as concurrentHashMap locks only certain areas of map so that others are free to access
 Concurrenthashmap is hence more performant
+
+### Producer Consumer Problem
+In order to have consistent data synchronization the following conditions have to be met
+1. The producer should not produce data when the buffer/list/queue is full
+2. The consumer should not try to consume when the buffer is empty
+3. The buffer/queue/list should be accesses either by producer or consumer at a time
+
+
 
 

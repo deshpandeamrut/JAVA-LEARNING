@@ -18,3 +18,4 @@ target/classes/com/practice/generics/stack/DemoGenericStack.class
 target/classes/com/practice/generics/stack/GenericsStack$StackElement.class
 target/classes/com/practice/generics/stack/GenericsStack.class
 /target/
+*.prefs
