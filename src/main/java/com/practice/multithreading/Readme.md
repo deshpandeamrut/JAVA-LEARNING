@@ -272,4 +272,9 @@ In order to have consistent data synchronization the following conditions have t
  - Using wait notify
  - Using thread safe blocking queue implementations
 
-
+## Callable Interface 
+ It is similar to runnnable except callable's call method returns a value unlike run() method which is returning void
+ - run() method makes it to rely only on shared resources r putting results into global variables
+ 
+## Future interface
+The Future interface is used to represent the result of an asynchronous computation. The interface also provides methods to check the status of a submitted task and also allows the task to be cancelled if possible.
