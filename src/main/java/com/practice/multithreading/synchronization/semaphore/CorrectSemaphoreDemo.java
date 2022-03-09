@@ -8,8 +8,8 @@ public class CorrectSemaphoreDemo {
 	public static void main(String[] args) throws InterruptedException {
 
 		Semaphore semaphore = new Semaphore(1);
-		Thread t1 = new Thread(new MyThread1(semaphore));// acquires semaphore permits but doesn't release
-		Thread t2 = new Thread(new MyGoodThread(semaphore)); // waits indefinitely for acquiring semaphore
+		Thread t1 = new Thread(new MyThread1(semaphore));
+		Thread t2 = new Thread(new MyGoodThread(semaphore)); 
 
 		t1.start();
 		t1.join();
