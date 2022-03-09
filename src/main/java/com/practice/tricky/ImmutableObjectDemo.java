@@ -1,8 +1,18 @@
 package com.practice.tricky;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+/**
+ * How to make Immuatbe class? 
+ * 1. Mark class as final 
+ * 2. Mark all members as final and private 
+ * 3. Implement only getters 
+ * 4. Always initialize and return wrapper classes (mutable objects) by doing deep copy
+ * 
+ * @author XKS9
+ *
+ */
 
 public class ImmutableObjectDemo {
 
