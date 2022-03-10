@@ -8,8 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import com.practice.serialization.Subject.Trainee;
-
 public class SerializableDemo {
 
 	public static void main(String[] args) {
