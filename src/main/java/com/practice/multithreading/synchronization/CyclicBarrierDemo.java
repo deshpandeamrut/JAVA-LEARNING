@@ -24,6 +24,7 @@ public class CyclicBarrierDemo {
 				System.out.println("Tiago reached blore!");
 				try {
 					cyclicBarrier.await();
+					System.out.println("Tiago resumed!");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} catch (BrokenBarrierException e) {
@@ -41,6 +42,7 @@ public class CyclicBarrierDemo {
 				System.out.println("i10 reached blore!");
 				try {
 					cyclicBarrier.await();
+					System.out.println("i10 resumed!");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} catch (BrokenBarrierException e) {
