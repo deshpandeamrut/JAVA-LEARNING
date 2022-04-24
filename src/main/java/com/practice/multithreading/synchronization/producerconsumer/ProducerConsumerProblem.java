@@ -2,12 +2,11 @@ package com.practice.multithreading.synchronization.producerconsumer;
 
 import java.util.LinkedList;
 
-public class PcProblem {
+public class ProducerConsumerProblem {
 
 	public static void main(String[] args) {
 
 		pc pc = new pc();
-		final LinkedList<String> myList = new LinkedList<String>();
 
 		Thread p = new Thread(new Producer(pc));
 
@@ -59,13 +58,13 @@ class pc {
 	public void produce() throws InterruptedException {
 		int i = 0;
 		while (true) { // to handle spurious wakes
-			synchronized (this) {
+			synchronized (this) {//NOSONAR
 				while (list.size() == 5) {
 					wait();
 				}
 				list.add(i+ "");
-				i = i+1;
 				System.out.println("Produced : " + i);
+				i = i+1;
 				notifyAll();
 				Thread.sleep(1000);
 			}
@@ -73,7 +72,7 @@ class pc {
 	}
 
 	public void consume() throws InterruptedException {
-		while (true) {
+		while (true) {//NOSONAR
 			synchronized (this) {
 				if (list.isEmpty()) {
 					wait();

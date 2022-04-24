@@ -17,7 +17,6 @@ public class ExecutorServiceDemo {
 		pool.execute(task3); //execute
 		pool.execute(task1);
 		pool.execute(task2);
-		
 		pool.shutdown();//stop the pool
 	}
 }

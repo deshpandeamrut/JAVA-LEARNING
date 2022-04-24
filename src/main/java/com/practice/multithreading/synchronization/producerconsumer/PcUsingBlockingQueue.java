@@ -38,7 +38,6 @@ class ProducerBQ implements Runnable {
 			try {
 				queue.put(i);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("Produced " + i);
@@ -56,7 +55,7 @@ class ConsumerBQ implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (true) {//NOSONAR
 			int val;
 			try {
 				val = queue.take();
