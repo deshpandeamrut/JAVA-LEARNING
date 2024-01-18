@@ -1,4 +1,4 @@
-package com.practice.multithreading.thread;
+package main.java.com.practice.multithreading.thread;
 /**
  * There are two ways to create a thread:
 
@@ -16,6 +16,11 @@ public class ThreadCreation {
 		
 		Thread myRunnableThread =  new Thread(new MyThreadViaRunnable()); //New Thread by passing runnable instance
 		myRunnableThread.start();
+		Thread t3 = new Thread(()->  {
+			System.out.println("Running with lamda - functional interface implementation");
+		});
+		
+		t3.start();
 	}
 }
 

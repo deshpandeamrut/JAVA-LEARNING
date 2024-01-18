@@ -1,4 +1,4 @@
-package com.practice.tricky;
+package main.java.com.practice.tricky;
 
 /**
  * JAVA is pass by value for primitives
@@ -17,14 +17,14 @@ package com.practice.tricky;
  * Java is pass by value. Well, pass by reference value. Oh well, even better is
  * pass-by-copy-of-the-variable-value! ;)
  * 
- * @author XKS9
+ * @author Amrut
  *
  */
-public class JavaPassByBalue {
+public class JavaPassByValue {
 	public static void main(String[] args) {
 
 		Car car = new Car("i10");
-		JavaPassByBalue javaPassByBalue = new JavaPassByBalue();
+		JavaPassByValue javaPassByBalue = new JavaPassByValue();
 
 		System.out.println("Car name " + car.name);
 		javaPassByBalue.method1(car);
@@ -37,6 +37,10 @@ public class JavaPassByBalue {
 		System.out.println("Car name in main after method2- " + car1.name);
 	}
 
+	/**
+	 * 
+	 * @param car
+	 */
 	public void method1(Car car) {
 		/*
 		 * car objects's address's value is passed

@@ -1,4 +1,4 @@
-package com.practice.multithreading.thread;
+package main.java.com.practice.multithreading.thread;
 
 public class ThreadScheduling {
 	public static void main(String[] args) {
