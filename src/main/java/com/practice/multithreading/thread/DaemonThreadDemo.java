@@ -1,4 +1,4 @@
-package main.java.com.practice.multithreading.thread;
+package com.practice.multithreading.thread;
 
 public class DaemonThreadDemo {
 

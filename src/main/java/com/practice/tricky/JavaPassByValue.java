@@ -1,4 +1,4 @@
-package main.java.com.practice.tricky;
+package com.practice.tricky;
 
 /**
  * JAVA is pass by value for primitives

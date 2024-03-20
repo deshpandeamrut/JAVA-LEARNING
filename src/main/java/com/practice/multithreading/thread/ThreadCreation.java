@@ -1,4 +1,4 @@
-package main.java.com.practice.multithreading.thread;
+package com.practice.multithreading.thread;
 /**
  * There are two ways to create a thread:
 
